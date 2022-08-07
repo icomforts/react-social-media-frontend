@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import UserApi from "../../api/UserApi";
 import MessageApi from "../../api/MessageApi";
@@ -38,6 +38,9 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage }) => {
   const handleChange = (newMessage) => {
     setNewMessage(newMessage);
   };
+  useEffect(() => {
+    scroll.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
   const handleSendMessage = async (e) => {
     e.preventDefault();
     const message = {
@@ -46,17 +49,25 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage }) => {
       chatId: chat._id,
     };
     const receiverId = chat.members.find((id) => id !== currentUser);
-    // send message to socket server
-    setSendMessage({ ...message, receiverId });
-    // send message to database
+
     try {
-      const { data } = await MessageApi.addMessage(message);
+      const data = await MessageApi.addMessage(message);
+      setSendMessage({ ...data, receiverId });
       setMessages([...messages, data]);
       setNewMessage("");
     } catch {
       console.log("error");
     }
   };
+
+  useEffect(() => {
+    console.log("Message Arrived: ", receivedMessage);
+    if (receivedMessage !== null && receivedMessage?.chatId === chat?._id) {
+      setMessages([...messages, receivedMessage]);
+    }
+  }, [receivedMessage]);
+  const scroll = useRef();
+  const imageRef = useRef();
   return (
     <div className="chatBox">
       {chat ? (
@@ -69,7 +80,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage }) => {
                   userData?.profileImage
                     ? process.env.REACT_APP_PUBLIC_FOLDER +
                       userData.profileImage
-                    : process.env.REACT_APP_PUBLIC_FOLDER + "defaultProfile.png"
+                    : process.env.REACT_APP_PUBLIC_FOLDER + "defaultProfile.jpg"
                 }
                 alt="Profile"
               />
@@ -84,6 +95,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage }) => {
           <div className="chatBox__content">
             {messages.map((message) => (
               <div
+                ref={scroll}
                 className={
                   message.senderId === currentUser
                     ? "chatBox__content__message chatBox__content__message__owner"

@@ -24,7 +24,7 @@ const User = ({ person }) => {
           src={
             publicFolder + person.profileImage
               ? publicFolder + person.profileImage
-              : publicFolder + "defaultProfile.png"
+              : publicFolder + "defaultProfile.jpg"
           }
           alt="profile"
           className="user__image"
