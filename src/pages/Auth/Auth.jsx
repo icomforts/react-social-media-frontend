@@ -1,113 +1,152 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { login, register, selectAuth } from "../../store/slice/Auth";
+
 import "./Auth.scss";
 import Logo from "../../img/logo.png";
 
 const Auth = () => {
+  const { isLoggedIn, hasError } = useSelector(selectAuth);
+  const dispatch = useDispatch();
+
+  const initialState = {
+    firstname: "",
+    lastname: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+  };
+
+  const [isSignUp, setIsSignUp] = React.useState(false);
+  const [data, setData] = useState(initialState);
+
+  const [confirmPassword, setConfirmPassword] = useState(false);
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const resetForm = () => {
+    setData(initialState);
+    setConfirmPassword(false);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setConfirmPassword(false);
+
+    if (isSignUp) {
+      data.password === data.confirmPassword
+        ? dispatch(register(data))
+        : setConfirmPassword(true);
+    } else {
+      dispatch(login(data));
+    }
+  };
+
   return (
-    <div className="auth">
+    <div className="auth container">
+      {/* infoSide */}
       <div className="auth__infoSide">
         <img className="auth__infoSide__logo" src={Logo} alt="" />
         <div className="auth__infoSide__webName">
-          <h1>ZKC Media</h1>
+          <h1>Social Media</h1>
           <h6>Explore the ideas throughout the world</h6>
         </div>
       </div>
+      {/* formSide */}
+      <div className="auth__formSide">
+        <form
+          className="auth__formSide__from auth__formSide__from--info auth__formSide__from--auth"
+          onSubmit={handleSubmit}
+        >
+          <h3>{isSignUp ? "註冊" : "登入"}</h3>
 
-      <LogIn />
+          {isSignUp && (
+            <div>
+              <input
+                type="text"
+                placeholder="名"
+                className="auth__formSide__from__input"
+                name="firstname"
+                value={data.firstname}
+                onChange={handleChange}
+              />
+
+              <input
+                type="text"
+                placeholder="姓"
+                className="auth__formSide__from__input"
+                name="lastname"
+                value={data.lastname}
+                onChange={handleChange}
+              />
+            </div>
+          )}
+
+          <div>
+            <input
+              type="text"
+              className="auth__formSide__from__input"
+              name="username"
+              placeholder="使用者名稱"
+              value={data.username}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              className="auth__formSide__from__input"
+              name="password"
+              placeholder="密碼"
+              value={data.password}
+              onChange={handleChange}
+            />
+            {isSignUp && (
+              <input
+                type="password"
+                className="auth__formSide__from__input"
+                name="confirmPassword"
+                placeholder="確認密碼"
+                value={data.confirmPassword}
+                onChange={handleChange}
+              />
+            )}
+          </div>
+          {hasError && (
+            <span className="auth__formSide__from__error">
+              請確認資料是否正確
+            </span>
+          )}
+
+          <div>
+            <div
+              className="auth__formSide__from__hint"
+              style={{ fontSize: "12px" }}
+            >
+              {isSignUp ? "已有帳號? " : "還沒有帳號?"}
+              <span
+                onClick={() => {
+                  resetForm();
+                  setIsSignUp((prev) => !prev);
+                }}
+              >
+                {isSignUp ? "登入" : "註冊"}
+              </span>
+            </div>
+          </div>
+          <button
+            className="iButton auth__formSide__from__button"
+            type="submit"
+            // disabled={loading}
+          >
+            {/* {loading ? "Loading..." : isSignUp ? "註冊" : "登入"} */}
+            {isSignUp ? "註冊" : "登入"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
-function LogIn() {
-  return (
-    <div className="auth__formSide">
-      <form className="auth__formSide__from auth__formSide__from--info auth__formSide__from--auth">
-        <h3>Log In</h3>
 
-        <div>
-          <input
-            type="text"
-            placeholder="Username"
-            className="auth__formSide__from__input"
-            name="username"
-          />
-        </div>
-
-        <div>
-          <input
-            type="password"
-            className="auth__formSide__from__input"
-            placeholder="Password"
-            name="password"
-          />
-        </div>
-
-        <div>
-          <span style={{ fontSize: "12px" }}>
-            Don't have an account Sign up
-          </span>
-          <button className="iButton auth__formSide__from__button">
-            Login
-          </button>
-        </div>
-      </form>
-    </div>
-  );
-}
-function SignUp() {
-  return (
-    <div className="auth__formSide">
-      <form className="auth__formSide__from auth__formSide__from--info auth__formSide__from--auth">
-        <h3>Sign up</h3>
-
-        <div>
-          <input
-            type="text"
-            placeholder="First Name"
-            className="auth__formSide__from__input"
-            name="firstname"
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            className="auth__formSide__from__input"
-            name="lastname"
-          />
-        </div>
-
-        <div>
-          <input
-            type="text"
-            className="auth__formSide__from__input"
-            name="username"
-            placeholder="Usernames"
-          />
-        </div>
-
-        <div>
-          <input
-            type="text"
-            className="auth__formSide__from__input"
-            name="password"
-            placeholder="Password"
-          />
-          <input
-            type="text"
-            className="auth__formSide__from__input"
-            name="confirmpass"
-            placeholder="Confirm Password"
-          />
-        </div>
-
-        <div>
-          <span style={{ fontSize: "12px" }}>
-            Already have an account. Login!
-          </span>
-        </div>
-        <button className="iButton auth__formSide__from__button" type="submit">
-          Signup
-        </button>
-      </form>
-    </div>
-  );
-}
 export default Auth;

@@ -1,14 +1,12 @@
 import React from "react";
 import "./ProfileInfo.scss";
-import LogoSearch from "../LogoSearch/LogoSearch";
 import FollowersCard from "../FollowersCard/FollowersCard";
-import InfoCard from "../InfoCard/InfoCard";
+import NavIcons from "../NavIcons/NavIcons";
 
 const ProfileInfo = () => {
   return (
     <div className="profileSide">
-      <LogoSearch />
-      <InfoCard />
+      <NavIcons />
       <FollowersCard />
     </div>
   );

@@ -6,10 +6,10 @@ import SideBar from "../../components/SideBar/SideBar";
 import "./Profile.scss";
 const Profile = () => {
   return (
-    <div className="profile">
+    <div className="profile container">
       <ProfileInfo />
       <div className="profile__main">
-        <ProfileCard />
+        <ProfileCard location={"profilePage"} />
         <PostSide />
       </div>
       <SideBar />

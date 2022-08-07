@@ -1,0 +1,123 @@
+.chatBox {
+  background: var(--cardColor);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 86vh;
+  padding: 1rem;
+  &__header {
+    &__user {
+      border-radius: 0.5rem;
+      display: flex;
+      width: 100%;
+      padding: 10px;
+      align-items: center;
+      position: relative;
+      &__image {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      &__info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 0.5rem;
+        font-size: 0.8rem;
+        span {
+          font-weight: bold;
+        }
+      }
+    }
+    hr {
+      border: 0.1px solid #ececec;
+      margin: 0.5rem;
+    }
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.5rem;
+    overflow: scroll;
+    &__message {
+      display: flex;
+      flex-direction: column;
+      span {
+        &:first-child {
+          background: var(--buttonBg);
+          color: white;
+          padding: 0.7rem;
+          border-radius: 1rem 1rem 1rem 0;
+          max-width: 28rem;
+          width: -moz-fit-content;
+          width: fit-content;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        &:last-child {
+          align-self: flex-start;
+          font-size: 0.1rem;
+          color: var(--hrColor);
+        }
+      }
+      &__owner {
+        align-self: flex-end;
+        span {
+          &:first-child {
+            border-radius: 1rem 1rem 0 1rem;
+            background: linear-gradient(98.63deg, #24e4f0 0%, #358ff9 100%);
+          }
+          &:last-child {
+            align-self: flex-end;
+          }
+        }
+      }
+    }
+  }
+  &__send {
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    height: 4rem;
+    align-items: center;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    align-self: end;
+    width: 100%;
+    & > div {
+      height: 100%;
+      padding: 0px 15px 0px 15px;
+    }
+    & > input {
+      height: 70%;
+      background-color: rgb(236, 236, 236);
+      border-radius: 0.5rem;
+      border: none;
+      outline: none;
+      flex: 1;
+      font-size: 14px;
+      padding: 0px 15px 0px 15px;
+    }
+    &__upload {
+      background: rgb(233, 233, 233);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    &__button {
+      height: 100%;
+      width: 6rem;
+      align-self: center;
+    }
+  }
+  &__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

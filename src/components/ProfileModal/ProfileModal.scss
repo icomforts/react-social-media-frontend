@@ -1,0 +1,92 @@
+.profile__edit__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  &__images {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    & > div {
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      label {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      input {
+        display: none;
+      }
+    }
+    &__cover {
+      border-radius: 8px;
+      width: 100%;
+      height: 200px;
+      background: var(--hrColor);
+    }
+    &__profile {
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      box-shadow: var(--profileShadow);
+
+      width: 6rem;
+      height: 6rem;
+      background: var(--hrColor);
+      label {
+      }
+      img {
+      }
+    }
+  }
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    &__input {
+      border: none;
+      outline: none;
+      background-color: var(--inputColor);
+      border-radius: 8px;
+      padding: 16px;
+      flex: 1 1;
+    }
+    &__name {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    input {
+      max-width: 100%;
+    }
+    textarea {
+      resize: none;
+      width: 100%;
+      height: 5rem;
+    }
+  }
+  &__buttons {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

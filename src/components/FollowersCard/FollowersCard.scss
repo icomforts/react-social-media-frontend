@@ -6,32 +6,4 @@
   flex-direction: column;
   font-size: 13px;
   max-height: 10rem;
-  &__follower {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    & > div {
-      display: flex;
-      gap: 10px;
-    }
-    &__image {
-      width: 3.2rem;
-      height: 3.2rem;
-      border-radius: 50%;
-    }
-    &__info {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      &__name {
-        font-weight: bold;
-      }
-    }
-    &__button {
-      height: 2rem;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-  }
 }

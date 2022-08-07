@@ -41,12 +41,14 @@
     gap: 2rem;
   }
   &__formSide__from {
+    // width: 500px;
+    // min-width: 300px;
     &__input {
       border: none;
       outline: none;
       background-color: var(--inputColor);
       border-radius: 8px;
-      padding: 20px;
+      padding: 16px;
       flex: 1;
     }
     & > div {
@@ -59,6 +61,19 @@
       width: 6rem;
       height: 2rem;
       align-self: flex-end;
+    }
+    &__hint {
+      span {
+        cursor: pointer;
+        color: var(--blue);
+        margin-left: 4px;
+      }
+    }
+    &__error {
+      color: red;
+      font-size: 12px;
+      align-self: flex-end;
+      margin-right: 5px;
     }
   }
   &__formSide__from--auth {

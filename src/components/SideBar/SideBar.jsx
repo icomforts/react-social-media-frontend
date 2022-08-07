@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import NavIcons from "../NavIcons/NavIcons";
 import TrendCard from "../TrendCard/TrendCard";
 import "./SideBar.scss";
 import ShareModal from "../ShareModal/ShareModal";
+import LogoSearch from "../LogoSearch/LogoSearch";
+
 const SideBar = () => {
   const [modalOpened, setModalOpened] = useState(false);
   return (
     <div className="sideBar">
-      <NavIcons />
+      <LogoSearch />
+
       <TrendCard />
       <button
         className="sideBar__share__button iButton"

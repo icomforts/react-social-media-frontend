@@ -6,6 +6,7 @@
   gap: 1rem;
   overflow-x: clip;
   background-color: var(--cardColor);
+  width: 100%;
   &__images {
     position: relative;
     display: flex;
@@ -14,9 +15,13 @@
     justify-content: center;
     &__cover {
       width: 100%;
+      object-fit: cover;
+      max-height: 220px;
     }
     &__profile {
       width: 6rem;
+      height: 6rem;
+      object-fit: cover;
       border-radius: 50%;
       position: absolute;
       bottom: -3rem;
@@ -29,19 +34,42 @@
     align-items: center;
     margin-top: 3rem;
     gap: 10px;
+    position: relative;
+    &__edit {
+      position: absolute;
+      right: 8px;
+      top: -3rem;
+      cursor: pointer;
+      &__button {
+        height: 1rem;
+        padding: 1rem;
+        align-self: center;
+      }
+    }
+    &__about {
+      word-break: break-all;
+      padding: 0 1rem;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
     &__name {
       font-weight: bold;
     }
   }
+
   &__followStatus {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
+    margin-bottom: 1rem;
     & > hr {
       width: 85%;
       border: 1px solid var(--hrColor);
+      display: none;
     }
     & > div {
       display: flex;
@@ -67,6 +95,7 @@
     &__line {
       height: 150%;
       border-left: 2px solid var(--hrColor);
+      display: none;
     }
   }
   &__bottom {

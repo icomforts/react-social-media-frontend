@@ -1,35 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./FollowersCard.scss";
-
-import { Followers } from "../../Data/FollowersData";
-
+import { useSelector } from "react-redux";
+import { selectAuth } from "../../store/slice/Auth";
+import User from "../User/User";
+import UserApi from "../../api/UserApi";
 const FollowersCard = () => {
+  const [persons, setPersons] = useState([]);
+  const { authData } = useSelector(selectAuth);
+  const { user } = authData;
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const data = await UserApi.getAll();
+      setPersons(data);
+    };
+    fetchUsers();
+  }, []);
   return (
     <div className="followersCard">
-      <h3>誰在追蹤你</h3>
-      {Followers.map((follower, id) => {
-        return (
-          <div className="followersCard__follower" key={id}>
-            <div>
-              <img
-                src={follower.img}
-                alt=""
-                className="followersCard__follower__image"
-              />
-              <div className="followersCard__follower__info">
-                <span className="followersCard__follower__info__name">
-                  {follower.name}
-                </span>
-                <span className="followersCard__follower__info__account">
-                  @{follower.account}
-                </span>
-              </div>
-            </div>
-            <button className="followersCard__follower__button iButton">
-              Follow
-            </button>
-          </div>
-        );
+      <h3>誰也在用</h3>
+      {persons.map((person, id) => {
+        if (person._id !== user._id) return <User person={person} key={id} />;
       })}
     </div>
   );

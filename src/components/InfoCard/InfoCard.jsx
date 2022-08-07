@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./InfoCard.scss";
 import ProfileModal from "../ProfileModal/ProfileModal";
 import { UilPen } from "@iconscout/react-unicons";
+
 const InfoCard = () => {
   const [modalOpened, setModalOpened] = useState(false);
+
   return (
     <div className="infoCard">
       <div className="infoCard__head">
@@ -22,21 +24,9 @@ const InfoCard = () => {
       </div>
       <div className="infoCard__info">
         <span className="infoCard__info__title">
-          <b>Status</b>
+          <b>簡介 </b>
         </span>
-        <span className="infoCard__info__content">in Relation</span>
-      </div>
-      <div className="infoCard__info">
-        <span className="infoCard__info__title">
-          <b>Status</b>
-        </span>
-        <span className="infoCard__info__content">in Relation</span>
-      </div>
-      <div className="infoCard__info">
-        <span className="infoCard__info__title">
-          <b>Status</b>
-        </span>
-        <span className="infoCard__info__content">in Relation</span>
+        <span className="infoCard__info__content">talk about yourself</span>
       </div>
     </div>
   );

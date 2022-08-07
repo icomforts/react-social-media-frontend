@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Posts.scss";
-
-import { PostsData } from "../../Data/PostsData";
 import Post from "../Post/Post";
+import { useSelector, useDispatch } from "react-redux";
+import { selectAuth } from "../../store/slice/Auth";
+import { getTimelinePosts, selectPosts } from "../../store/slice/Posts";
 
 const Posts = () => {
+  const dispatch = useDispatch();
+  const posts = useSelector(selectPosts);
+  const { authData } = useSelector(selectAuth);
+  const { user } = authData;
+
+  useEffect(() => {
+    dispatch(getTimelinePosts(user._id));
+  }, []);
+
   return (
     <div className="posts">
-      {PostsData.map((post, id) => {
-        return <Post data={post} key={id} />;
+      {posts.map((post) => {
+        return <Post data={post} key={post._id} />;
       })}
     </div>
   );

@@ -1,0 +1,27 @@
+.navIcons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+  z-index: 2;
+  & > * {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.navIcons > a > img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.navIcons > img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.navIcons > img:hover {
+  cursor: pointer;
+}
