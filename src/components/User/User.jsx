@@ -22,7 +22,7 @@ const User = ({ person }) => {
       <div>
         <img
           src={
-            publicFolder + person.profileImage
+            person.profileImage
               ? publicFolder + person.profileImage
               : publicFolder + "defaultProfile.jpg"
           }

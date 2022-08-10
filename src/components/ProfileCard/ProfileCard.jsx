@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./ProfileCard.scss";
 
-import { selectAuth, getUser } from "../../store/slice/Auth";
-import { useSelector, useDispatch } from "react-redux";
+import { selectAuth } from "../../store/slice/Auth";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { selectPosts } from "../../store/slice/Posts";
 import ProfileModal from "../ProfileModal/ProfileModal";
 
 const ProfileCard = ({ location }) => {
-  const dispatch = useDispatch();
   const { authData } = useSelector(selectAuth);
   const { user } = authData;
   const posts = useSelector(selectPosts);
   const [modalOpened, setModalOpened] = useState(false);
-  const serverPublic = process.env.REACT_APP_PUBLIC_FOLDER;
+  const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (
     <div className="profileCard">
@@ -21,8 +20,8 @@ const ProfileCard = ({ location }) => {
         <img
           src={
             user.coverImage
-              ? serverPublic + user.coverImage
-              : serverPublic + "defaultCover.jpg"
+              ? publicFolder + user.coverImage
+              : publicFolder + "defaultCover.jpg"
           }
           alt="CoverImage"
           className="profileCard__images__cover"
@@ -30,8 +29,8 @@ const ProfileCard = ({ location }) => {
         <img
           src={
             user.profileImage
-              ? serverPublic + user.profileImage
-              : serverPublic + "defaultProfile.jpg"
+              ? publicFolder + user.profileImage
+              : publicFolder + "defaultProfile.jpg"
           }
           alt="ProfileImage"
           className="profileCard__images__profile"

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { login, register, selectAuth } from "../../store/slice/Auth";
 
 import "./Auth.scss";
-import Logo from "../../img/logo.png";
 
 const Auth = () => {
   const { isLoggedIn, hasError } = useSelector(selectAuth);
@@ -47,10 +46,9 @@ const Auth = () => {
     <div className="auth container">
       {/* infoSide */}
       <div className="auth__infoSide">
-        <img className="auth__infoSide__logo" src={Logo} alt="" />
         <div className="auth__infoSide__webName">
           <h1>Social Media</h1>
-          <h6>Explore the ideas throughout the world</h6>
+          <h6>React Redux Socket.io Node MongoDB</h6>
         </div>
       </div>
       {/* formSide */}

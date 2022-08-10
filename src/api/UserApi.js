@@ -20,5 +20,9 @@ const UserApi = {
     const url = `user/${id}/unfollow`;
     return api.put(url, data);
   },
+  getAllFollowing: (id) => {
+    const url = `user/${id}/following`;
+    return api.get(url);
+  },
 };
 export default UserApi;

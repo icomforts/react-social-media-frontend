@@ -14,6 +14,7 @@ import { uploadImage } from "../../store/slice/Upload";
 import { uploadPost } from "../../store/slice/Posts";
 
 const PostShare = () => {
+  const publicFolder = process.env.REACT_APP_PUBLIC_FOLDER;
   const [image, setImage] = useState(null);
   const imageRef = useRef();
   const desc = useRef();
@@ -55,7 +56,15 @@ const PostShare = () => {
 
   return (
     <div className="postShare">
-      <img src={ProfileImage} alt="" className="postShare__avatar" />
+      <img
+        src={
+          user.profileImage
+            ? publicFolder + user.profileImage
+            : publicFolder + "defaultProfile.jpg"
+        }
+        alt=""
+        className="postShare__avatar"
+      />
       <div className="postShare__actions">
         <input ref={desc} required type="text" placeholder="想說什麼呢?" />
         <div className="postShare__options">

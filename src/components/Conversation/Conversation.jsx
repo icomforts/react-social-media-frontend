@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Conversation.scss";
-import { useSelector, useDispatch } from "react-redux";
 import UserApi from "../../api/UserApi";
 const Conversation = ({ chatData, currentUser, online }) => {
   const [userData, setUserData] = useState(null);
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const userId = chatData.members.find((id) => id !== currentUser);
